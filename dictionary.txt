@@ -1,0 +1,31 @@
+
+ok = {
+    'A' => 345,
+    'B' => 654,
+    'C' => 765,
+    'D' => 345,
+    'E' => 65,
+    'F' => 435,
+    'G' => 765,
+    'H' => 453,
+    'I' => 435,
+    'J' => 675
+}
+
+
+
+loop do
+    puts 'Do you want to lookup a city name?(Y/N)'
+    
+    answer = gets.chomp.downcase
+    
+    break if answer != 'y'
+    
+    puts 'The available cities are:'
+    dial_book.each_key { |key| puts key }
+    puts 'What city would you like to know the area code?'
+    city_answer = gets.chomp
+    dial_book.each do |key, value|
+        puts "The Area Code of #{key} is #{value}" if city_answer.casecmp(key) == 0
+    end
+end
