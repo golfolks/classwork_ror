@@ -1,0 +1,162 @@
+$selling1 = 0
+$selling2 = 0
+$selling3 = 0
+$complete_sales = 0
+
+class Vending_Stuff
+
+  def initialize(item, price, vend_number)
+    @item = item
+    @price = price
+    @vend_number = vend_number
+    @supply = 0
+  end
+  def stock(article,num_items)
+    article.stock(article,num_items)
+  end
+  def vend(article)
+    article.vend(article)
+    article.selling(article)
+  end
+  
+  def cummulative_sale(thing1,thing2,thing3)
+    $selling1 = (thing1.selling(thing1) ).to_i
+    $selling2 = (thing2.selling(thing2)).to_i
+    $selling3 = (thing3.selling(thing3)).to_i
+    $complte_sales = $selling1 + $selling2 + $selling3
+    puts "total sale in cummulative selling are #{$complte_sales}"
+  end
+  def to_str()
+    puts "Hey there I'm in"
+  end
+
+end
+
+class Chips < VendingStuff
+  @@supply = 0
+
+  @selling = 0
+  @@vended_supply = 0
+  def initialize(item, price, vend_number)
+    super(item, price, vend_number)
+  end
+  def stock(thing,num_items)
+  @@supply = @@supply + num_items
+  "Supply of chips are #{@@supply}"
+  end
+  def vend(thing)
+    if @@supply > 0
+
+    @@supply = @@supply - 1
+    @@vended_supply = @@vended_supply + 1
+    "One article vended successfully"
+    else
+      "No item to vend"
+    end
+  end
+  def selling(thing)
+    @selling = @selling.to_i + (@price.to_i * @@vended_supply.to_i)
+    puts "selling of chips are #{@selling}"
+    return @selling
+  end
+  def to_str()
+    print ("In chips ")
+    super()
+  end
+
+end
+
+  class CandyBar < VendingStuff
+    @@supply = 0
+    @selling = 0
+    @@vended_supply = 0
+    def stock(thing, num_items)
+      @@supply = @@supply + num_items
+      "Supply of candy bars is #{@@supply}"
+    end
+    def vend(thing)
+      if @@supply > 0
+
+        @@supply = @@supply - 1
+        @@vended_supply = @@vended_supply + 1
+        "One article vended successfully"
+      else
+        "No article to vend"
+      end
+    end
+    def selling(thing)
+      @selling = @selling.to_i + (@price.to_i * @@vended_supply.to_i)
+      puts "selling of candy bars is #{@selling}"
+      return @selling
+    end
+    def to_str()
+      print ("In candy bar ")
+      super()
+    end
+
+  end
+
+class Crackers < VendingStuff
+  @@supply = 0
+  @selling = 0
+  @@vended_supply = 0
+  def stock(thing, num_items)
+  @@supply = @@supply + num_items
+  "Supply of crackers are #{@@supply}"
+  end
+  def vend(thing)
+    if @@supply > 0
+
+      @@supply = @@supply - 1
+      @@vended_supply = @@vended_supply + 1
+      "One article vended successfully"
+    else
+      "No article to vend"
+    end
+  end
+  def selling(thing)
+    @selling = @selling.to_i + (@price.to_i * @@vended_supply.to_i)
+    puts "selling of crackers are #{@selling}"
+    return @selling
+  end
+  def to_str()
+    print ("In crackers ")
+    super()
+  end
+
+end
+
+
+objct1 = VendingStuff.new("food vendor",0,0)
+
+
+=begin
+
+objct3 = CandyBar.new("candy bar", 20, 2)
+puts objct1.stock(objct3,3)
+
+puts objct1.vend(objct3)
+puts objct1.vend(objct3)
+puts objct1.selling(objct3)
+=end
+
+objct2 = Chips.new("chips", 10, 1)
+
+objct5 = Chips.new("chips", 10, 1)
+puts objct1.stock(objct2,10)
+
+puts objct1.vend(objct2)
+
+
+objct3 = CandyBar.new("candy bar", 10, 1)
+puts objct1.stock(objct3,10)
+puts objct1.vend(objct3)
+
+objct4 = Crackers.new("crackers", 10, 1)
+puts objct1.stock(objct4,10)
+puts objct1.vend(objct4)
+
+puts objct1.cummulative_sale(objct2,objct3,objct4)
+puts objct2.to_str()
+puts objct3.to_str()
+puts objct4.to_str()
